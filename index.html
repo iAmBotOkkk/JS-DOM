@@ -1,0 +1,69 @@
+<html>
+     
+
+<body>
+ 
+    <div>
+        <input type="text" placeholder="title" id="title"></input> <br><br>
+        <input type="text" placeholder="description" id="description"></input> <br><br>
+
+        <button onclick="addTodo()">Add Todo</button>
+        <div id="container"></div>
+    </div>
+
+     <script>
+        //   let globalId = 1;
+        //     function markAsDone(todoId){
+        //         const parent = document.getElementById(todoId);
+        //         parent.children[2].innerHTML = "Done"
+        //     }
+
+     function createChild(title,description,id) {
+            const a = document.createElement("div");
+            const b = document.createElement("div");
+            b.innerHTML = title;
+            const c = document.createElement("div");
+            c.innerHTML = description;
+            const d = document.createElement("button");
+            d.innerHTML = "Mark as done";
+            d.setAttribute("onclick", `markAsDone(${id})`);
+
+            a.appendChild(b);
+            a.appendChild(c);
+            a.appendChild(d);
+            a.setAttribute("id" , id)
+
+            return a; 
+        }
+         
+        function addTodo(){
+            const title = document.getElementById("title").value;
+            const description = document.getElementById("description").value;
+            const container = document.getElementById("container");
+
+            container.appendChild(createChild(title, description, globalId++))
+        }
+
+
+        function updateState(state){
+            const parent = document.getElementById("container");
+            parent.innerHTML = "";
+            for(let i = 0; i<state.length; i++){
+                const child = createChild(state[i].title,state[i].description,state[i].id);
+                parent.appendChild(child);
+            }
+        }
+        updateState([{
+            title:"Go to the gym",
+            description:"workout",
+            id:1
+        },{
+          title:"Go to the gym2",
+            description:"workout2",
+            id:2 
+        }])
+
+    </script>
+</body>
+
+</html>
