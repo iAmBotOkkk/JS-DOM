@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>State and Components</title>
+</head>
+
+<body>
+    <div id="buttonParent">
+
+    </div>
+</body>
+
+<script>
+    let state = {
+        count : 0
+    }
+
+    function OnbuttonPress(){
+        state.count++
+        StateAndComponents();
+    }
+
+function StateAndComponents(){
+    let buttonParent = document.getElementById("buttonParent").innerHTML= "";
+    const button = document.createElement("button");
+    button.innerHTML = `Counter ${state.count}`
+    button.setAttribute('onclick',`OnbuttonPress()`);
+
+    document.getElementById("buttonParent").appendChild(button)
+}
+StateAndComponents();
+
+</script>
+
+</html>
