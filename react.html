@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=\, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div id="stateAndComp">
+
+
+    </div>
+
+    <script>
+        let state = {
+            count : 0
+        }
+
+        function onPress(){
+            state.count++;
+            buttonRerender();
+        }
+
+        function buttonRerender(){
+            document.getElementById("stateAndComp").innerHTML = "";
+            const component = buttonComponent(state.count);
+            document.getElementById("stateAndComp").appendChild(component);
+
+        }
+
+        function buttonComponent(count){
+            const button = document.createElement("button");
+            button.innerHTML = `Counter ${count}`;
+            button.setAttribute("onclick",`onPress()`);
+            return button
+        }
+        buttonRerender();
+    </script>
+</body>
+</html>
